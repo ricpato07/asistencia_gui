@@ -1,0 +1,5 @@
+{
+  "apiEndpoint": "http://localhost:8083/registro-asistencia/api/",
+  "secure":"false",
+  "log": "true"
+}

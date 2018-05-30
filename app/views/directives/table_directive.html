@@ -1,0 +1,27 @@
+<div style="font-weight: bold;">{{titulo}}</div>
+<table class="table table-striped table-bordered table-hover ng-table-responsive">
+    <thead>
+        <tr>
+            <th ng-repeat="item in cabeceras">
+                {{item.cabecera}}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="item in registros">
+            <td>
+                {{item.nombre}}
+            </td>
+            <td>
+                {{item.edad}}
+            </td>
+        </tr>
+        <tr>
+           <td>
+            </td>
+            <td>
+                {{total}}
+            </td> 
+        </tr>
+    </tbody>
+</table>

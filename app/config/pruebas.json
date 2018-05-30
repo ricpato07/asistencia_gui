@@ -1,0 +1,4 @@
+{
+  "apiEndpoint": "http://kraken-dev.adea.com.mx/springangular/api/",
+  "secure":"true"
+}

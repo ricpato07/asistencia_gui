@@ -1,0 +1,326 @@
+<div class="content-wrapper">
+    <div ui-view>
+        <message content="content"></message>
+        <section class="content-header">
+            <h3>
+                Solicitud de tarjeta básica
+            </h3>
+        </section>
+        <section class="content">
+            <div ng-form="forma.form">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Datos del cliente</h3>
+                                <span class="pull-right">* Campos obligatorios</span>
+                            </div>
+                            <div>
+                                <div class="box-body">
+                                    <div class="form-group" ng-class="{'has-error': forma.form.primer_nombre.$invalid && forma.form.primer_nombre.$touched}">
+                                        <label for="primer_nombre">Primer nombre *</label>
+                                        <input id="primer_nombre" name="primer_nombre"
+                                               type="text" class="form-control"
+                                               ng-model="cat.nombre_uno" 
+                                               ng-maxlength="20" 
+                                               maxlength="20"
+                                               placeholder="Coloca el primer nombre del cliente"
+                                               required>
+                                    </div>
+                                    <div class="form-group" ng-class="{'has-error': forma.form.segundo_nombre.$invalid && forma.form.segundo_nombre.$touched}">
+                                        <label for="segundo_nombre">Segundo nombre</label>
+                                        <input id="segundo_nombre" name="segundo_nombre" 
+                                               type="text" class="form-control"
+                                               ng-model="cat.nombre_dos" 
+                                               ng-maxlength="20" 
+                                               maxlength="20"
+                                               placeholder="Coloca el segundo nombre del cliente (cuando aplique)"
+                                               >
+                                    </div>
+                                    <div class="form-group" ng-class="{'has-error': forma.form.ap_paterno.$invalid && forma.form.ap_paterno.$touched}">
+                                        <label for="ap_paterno">Apellido paterno</label>
+                                        <input id="ap_paterno" name="ap_paterno" 
+                                               type="text" class="form-control"
+                                               ng-model="cat.ap_paterno" 
+                                               ng-maxlength="30" 
+                                               maxlength="30"
+                                               placeholder="Coloca el apellido paterno"
+                                               required>
+                                    </div>
+                                    <div class="form-group" ng-class="{'has-error': forma.form.ap_materno.$invalid && forma.form.ap_materno.$touched}">
+                                        <label for="ap_materno">Apellido materno</label>
+                                        <input id="ap_materno" name="ap_materno"
+                                               type="text" class="form-control"
+                                               ng-model="cat.ap_materno" 
+                                               ng-maxlength="30" 
+                                               maxlength="30"
+                                               placeholder="Coloca el apellido materno"
+                                               required>
+                                    </div>
+                                    <div class="form-group" ng-class="{'has-error': forma.form.nombre_tarjeta.$invalid && forma.form.nombre_tarjeta.$touched}">
+                                        <label for="nombre_tarjeta">Nombre a mostrar en la tarjeta</label>
+                                        <input id="nombre_tarjeta" name="nombre_tarjeta" 
+                                               type="text" class="form-control" 
+                                               ng-model="cat.nombre_m_tarjeta" 
+                                               ng-maxlength="25" 
+                                               maxlength="25" 
+                                               placeholder="Acepta números, letras mayúsculas(incluyendo Ñ), espacios y signos especiales(.,-&')"
+                                               required>
+                                    </div>
+                                    <div class="form-group" ng-class="{'has-error': forma.form.fecha_nacimiento.$invalid && forma.form.fecha_nacimiento.$touched}">
+                                        <div class="input-group">
+                                            <label for="fecha_nacimiento">Fecha de nacimiento</label>
+                                            <input id="fecha_nacimiento" name="fecha_nacimiento" 
+                                                   type="text" class="form-control" 
+                                                   datepicker-popup="{{format}}" 
+                                                   ng-model="cat.fecha_nacimiento" 
+                                                   is-open="calendar.opened1"  
+                                                   ng-readonly="false"
+                                                   datepicker-options="dateOptions" 
+                                                   date-disabled="disabled(date, mode)"
+                                                   current-text="Hoy" 
+                                                   clear-text="Limpiar"
+                                                   close-text="Cerrar" 
+                                                   placeholder="dd/mm/aaaa"
+                                                   required/>
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-default" ng-click="open($event, 'opened1')" tooltip="Seleccionar fecha"><i class="glyphicon glyphicon-calendar"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group" ng-class="{'has-error': forma.form.rfc_cliente.$invalid && forma.form.rfc_cliente.$touched}">
+                                        <label for="rfc_cliente">RFC</label>
+                                        <input id="rfc_cliente" name="rfc_cliente" 
+                                               type="text" class="form-control"
+                                               ng-model="cat.rfc" 
+                                               ng-maxlength="13" 
+                                               maxlength="13"
+                                               placeholder="RFC sin espacios y con homoclave"
+                                               required>
+                                    </div>
+                                    <div class="form-group" ng-class="{'has-error': forma.form.tipo_id.$invalid && forma.form.tipo_id.$touched}">
+                                        <label for="tipo_id">Tipo de Id</label>
+                                        <select id="tipo_id" name="tipo_id"
+                                                class="form-control"
+                                                ng-model="cat.tipo_id" 
+                                                >
+                                            <option value="">--Selecciona un tipo--</option>
+                                            <option ng-repeat="option in tiposidlist" value="{{option.id_documento}}">{{option.descripcion}}</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group" ng-class="{'has-error': forma.form.no_id.$invalid && forma.form.no_id.$touched}">
+                                        <label for="no_id">No. de Id</label>
+                                        <input id="no_id" name="no_id" 
+                                               type="text" class="form-control"
+                                               ng-model="cat.num_id" 
+                                               ng-maxlength="13" 
+                                               maxlength="13"
+                                               placeholder="Coloca el número de Id"
+                                               required>
+                                    </div>
+                                    <div class="form-group" ng-class="{'has-error': forma.form.vigencia.$invalid && forma.form.vigencia.$touched}">
+                                        <label for="vigencia">Vigencia</label>
+                                        <input id="vigencia" name="vigencia" 
+                                               type="text" class="form-control" 
+                                               ng-model="cat.vigencia" 
+                                               ng-maxlength="4" 
+                                               maxlength="4" 
+                                               placeholder="Coloca el año de vigencia con formato aaaa"
+                                               required>
+                                    </div>
+                                    <div class="form-group" ng-class="{'has-error': forma.form.domicilio.$invalid && forma.form.domicilio.$touched}">
+                                        <label for="domicilio">Domicilio particular</label>
+                                        <textarea id="domicilio" name="domicilio" 
+                                                  rows="2" 
+                                                  class="form-control" 
+                                                  ng-maxlength="40" 
+                                                  maxlength="40" 
+                                                  ng-model="cat.domicilio"
+                                                  placeholder="Coloca el domicilio del cliente"
+                                                  required>
+                                        </textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Datos de la empresa</h3>
+                                <span class="pull-right">* Campos obligatorios</span>
+                            </div>
+                            <div>
+                                <div class="box-body">
+                                    <div class="form-group" ng-class="{'has-error': forma.form.llave.$invalid && forma.form.llave.$touched}">
+                                        <label for="llave">BCA o folio</label>
+                                        <input id="llave" name="llave"
+                                               type="text" class="form-control"
+                                               ng-model="cat.llave" 
+                                               ng-maxlength="15" 
+                                               maxlength="15"
+                                               placeholder="Coloca el número BCA o el folio"
+                                               required>
+                                    </div>
+                                    <div class="form-group" ng-class="{'has-error': forma.form.nombre_empresa.$invalid && forma.form.nombre_empresa.$touched}">
+                                        <label for="nombre_empresa">Nombre de la empresa</label>
+                                        <input id="nombre_empresa" name="nombre_empresa" 
+                                               type="text" class="form-control"
+                                               ng-model="cat.nom_empresa" 
+                                               ng-maxlength="25" 
+                                               maxlength="25"
+                                               placeholder="Coloca el nombre de la empresa"
+                                               required>
+                                    </div>
+                                    <div class="form-group" ng-class="{'has-error': forma.form.rfc_empresa.$invalid && forma.form.rfc_empresa.$touched}">
+                                        <label for="rfc_empresa">RFC de la empresa</label>
+                                        <input id="rfc_empresa" name="rfc_empresa" 
+                                               type="text" class="form-control"
+                                               ng-model="cat.rfc_empresa" 
+                                               ng-maxlength="13" 
+                                               maxlength="13" 
+                                               placeholder="Coloca el RFC de la empresa"
+                                               required>
+                                    </div>
+                                    <div class="form-group" ng-class="{'has-error': forma.form.rfc_representante.$invalid && forma.form.rfc_representante.$touched}">
+                                        <label for="rfc_representante">RFC del representante legal</label>
+                                        <input id="rfc_representante" name="rfc_representante" 
+                                               type="text" class="form-control"
+                                               ng-model="cat.rfc_rlegal" 
+                                               ng-maxlength="13" 
+                                               maxlength="13"
+                                               placeholder="Coloca el RFC del representante legal"
+                                               required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Documentos</h3>
+                                <span class="pull-right">* Campos obligatorios</span>
+                            </div>
+                            <div class="box-body">
+                                <div class="form-group">
+                                    <label>Identificación oficial *</label>
+                                    <tabset ng-show='channel_one.file == null'>
+                                        <tab style="font-size:12px;" heading="Adjuntar imagen">
+                                            <div style="height: 50px;">
+                                                <input id="foto_one" style="margin-top: 20px;" ng-hide='channel_one.file != null' name="foto_one" type="file" ng-model="channel_one.file" on-change="on_change_input_one" accept="image/*" base-sixty-four-input>
+                                            </div>
+                                        </tab>
+                                        <tab style="font-size:12px;" heading="Tomar fotografía">
+                                            <div style="text-align: center;">     
+                                                <webcam channel="channel_one.channel" 
+                                                        on-error="onError_one(err)">
+                                                    <div class="alert alert-error" ng-show="channel_one.webcamError">
+                                                        <span>{{channel_one.webcamError.message}}</span>
+                                                    </div>
+                                                </webcam>
+                                                <div> 
+                                                    <button type="button" ng-show="!channel_one.webcamError" ng-click="makeSnapshot('#snapshot_one', 1)">Capturar</button>        
+                                                </div>
+                                            </div>
+                                            <canvas ng-show="false" id="snapshot_one"></canvas> 
+                                        </tab>
+                                    </tabset>
+                                    <div style="text-align: right;" ng-hide='channel_one.file == null'>
+                                        <button type="button" ng-click="quitar_foto(1)"><i class="fa fa-times" aria-hidden="true"></i></button>    
+                                        <div style="width:100%;">
+                                            <div>
+                                                <img class="img-responsive" style="height: 250px;" ng-src="{{channel_one.badjuntado?'data:image/*;base64,':''}}{{channel_one.file.base64}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Comprobante de domicilio *</label>
+                                    <tabset ng-show='channel_two.file == null'>
+                                        <tab style="font-size:12px;" heading="Adjuntar imagen">
+                                            <div style="height: 50px;">
+                                                <input id="foto_two" name="foto_two"
+                                                       style="margin-top: 20px;" 
+                                                       ng-hide='channel_two.file != null' 
+                                                       type="file" 
+                                                       ng-model="channel_two.file" 
+                                                       on-change="on_change_input_two" 
+                                                       accept="image/*" 
+                                                       base-sixty-four-input>
+                                            </div>
+                                        </tab>
+                                        <tab style="font-size:12px;" heading="Tomar fotografía">
+                                            <div style="text-align: center;">     
+                                                <webcam channel="channel_two.channel" 
+                                                        on-error="onError_two(err)">
+                                                    <div class="alert alert-error" ng-show="channel_two.webcamError">
+                                                        <span>{{channel_two.webcamError.message}}</span>
+                                                    </div>
+                                                </webcam>
+                                                <div> 
+                                                    <button type="button" ng-show="!channel_two.webcamError" ng-click="makeSnapshot('#snapshot_two', 2)">Capturar</button>        
+                                                </div>
+                                            </div>
+                                            <canvas ng-show="false" id="snapshot_two"></canvas> 
+                                        </tab>
+                                    </tabset>
+                                    <div style="text-align: right;" ng-hide='channel_two.file == null'>
+                                        <button type="button" ng-click="quitar_foto(2)"><i class="fa fa-times" aria-hidden="true"></i></button>    
+                                        <div style="width:100%;">
+                                            <div>
+                                                <img class="img-responsive" style="height: 250px;" ng-src="{{channel_two.badjuntado?'data:image/*;base64,':''}}{{channel_two.file.base64}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Comprobante de ingresos *</label>
+                                    <tabset ng-show='channel_three.file == null'>
+                                        <tab style="font-size:12px;" heading="Adjuntar imagen">
+                                            <div style="height: 50px;">
+                                                <input id="foto_three" name="foto_three"
+                                                       style="margin-top: 20px;" 
+                                                       ng-hide='channel_three.file != null' 
+                                                       type="file" 
+                                                       ng-model="channel_three.file" 
+                                                       on-change="on_change_input_three" 
+                                                       accept="image/*" 
+                                                       base-sixty-four-input>
+                                            </div>
+                                        </tab>
+                                        <tab style="font-size:12px;" heading="Tomar fotografía">
+                                            <div style="text-align: center;">     
+                                                <webcam channel="channel_three.channel" 
+                                                        on-error="onError_three(err)">
+                                                    <div class="alert alert-error" ng-show="channel_three.webcamError">
+                                                        <span>{{channel_three.webcamError.message}}</span>
+                                                    </div>
+                                                </webcam>
+                                                <div> 
+                                                    <button type="button" ng-show="!channel_three.webcamError" ng-click="makeSnapshot('#snapshot_three', 3)">Capturar</button>        
+                                                </div>
+                                            </div>
+                                            <canvas ng-show="false" id="snapshot_three"></canvas> 
+                                        </tab>
+                                    </tabset>
+                                    <div style="text-align: right;" ng-hide='channel_three.file == null'>
+                                        <button type="button" ng-click="quitar_foto(3)"><i class="fa fa-times" aria-hidden="true"></i></button>    
+                                        <div style="width:100%;">
+                                            <div>
+                                                <img class="img-responsive" style="height: 250px;" ng-src="{{channel_three.badjuntado?'data:image/*;base64,':''}}{{channel_three.file.base64}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <button ng-click="limpiar()" type="button" style="margin-left: 10px;" class="btn btn-default pull-right">Limpiar</button>
+                        <button ng-click="guardar()" ng-disabled="forma.form.$invalid || !channel_one.file || !channel_two.file || !channel_three.file" type="button" class="btn btn btn-primary pull-right">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </section>    
+        <message content="content"></message>
+    </div>  
+</div>
