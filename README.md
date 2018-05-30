@@ -1,2 +1,2 @@
-# demo_gui
-Front end para demo registro de asistencia
+# asistencia_gui
+Front end para registro de asistencia
